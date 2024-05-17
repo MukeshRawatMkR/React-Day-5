@@ -1,69 +1,56 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
-import { useState } from "react";
+// import resList from "../utils/mockData";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   //Local state variable -> super powerful variable
-  let [listOfRestaurants, setListOfRestaurant] = useState([
-    {
-      data: {
-        id: "97828",
-        name: " Pizza",
-        cloudinaryImageId: "lnvcfknv2yyhidbh6mky",
-        locality: "Post Office Road",
-        areaName: "Subhash Nagar",
-        costForTwo: "₹275 for two",
-        cuisines: ["Italian", "Pizzas"],
-        avgRating: 2.3,
-        deliveryTime: 27,
-        parentId: "475411",
-        avgRatingString: "4.3",
-      },
-    },
-    {
-      data: {
-        id: "97829",
-        name: "Jo Paaji",
-        cloudinaryImageId: "lnvcfknv2yyhidbh6mky",
-        locality: "Post Office Road",
-        areaName: "Subhash Nagar",
-        costForTwo: "₹275 for two",
-        cuisines: ["Italian", "Pizzas"],
-        avgRating: 4.3,
-        parentId: "475411",
-        deliveryTime: 27,
-        avgRatingString: "4.3",
-      },
-    },
-    {
-      data: {
-        id: "978528",
-        name: " Pizza",
-        cloudinaryImageId: "lnvcfknv2yyhidbh6mky",
-        locality: "Post Office Road",
-        areaName: "Subhash Nagar",
-        costForTwo: "₹275 for two",
-        cuisines: ["Italian", "Pizzas"],
-        avgRating: 4.3,
-        deliveryTime: 27,
-        parentId: "475411",
-        avgRatingString: "4.3",
-      },
-    }
-  ]);
-  return (
+  const [listOfRestaurants, setListOfRestaurant] = useState([]);
+
+  const[filteredRestaurant, setFilteredRestaurant]=useState([]); 
+
+  const [searchText, setSearchText]=useState("");
+
+useEffect(()=>{
+  // console.log("useEffect Called");
+  fetchData();
+},[]);
+
+const fetchData=async ()=>{
+  const data=await fetch(
+    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.2685607&lng=78.00710389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  );
+  const json=await data.json();
+  // console.log(json);
+  setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+}
+
+  return listOfRestaurants.length===0?<Shimmer/>:(//this is ternary operator.
     <div className="body">
       <div className="filter">
+       <div className="search">
+        <input type="text" className="search-box" value={searchText} 
+        onChange={(e)=>{
+setSearchText(e.target.value);
+        }}/>
+        <button onClick={()=>{
+          //filter the restaurant cards and update the UI.
+          //serachText
+
+        }}>Search</button>
+       </div>
         <button
           className="filter-btn"
           onClick={() => {
             //filter logic here
-          const filteredList= listOfRestaurants.filter(
-              (res) => res.data.avgRating > 4
+          const filteredRestaurant= listOfRestaurants.filter(
+              (res) => res?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.[0]?.info?.avgRating> 4
             );
             // console.log(listOfRestaurants);
           
-            setListOfRestaurant(filteredList);
+            setFilteredRestaurant(filteredRestaurant);
+      
           }}
         >
           Top Rated Restaurants
@@ -72,9 +59,9 @@ const Body = () => {
       <div className="res-container">
         {
           //whenever we loop through map we should always use key to get rid of warning on console.
-          listOfRestaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant.data.id} resData={restaurant} />
-          ))
+          filteredRestaurant.map((restaurant) => (
+            <RestaurantCard key={ restaurant.info.id} resData={restaurant} />
+           ))
         }
       </div>
     </div>

@@ -4,7 +4,10 @@ import { CDN_URL } from "../utils/constants";//named exports imported like this.
 const RestaurantCard = (props) => {
   const { resData } = props;
  //destructuring of objects:
-const{cloudinaryImageId, name, cuisines, avgRating,deliveryTime}=resData?.data;
+const{cloudinaryImageId, name, cuisines, avgRating,sla}= resData?.info;
+
+
+
   return (
     <div
       className="res-card"
@@ -21,7 +24,8 @@ const{cloudinaryImageId, name, cuisines, avgRating,deliveryTime}=resData?.data;
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating}</h4>
       {/* <h4>{resList[0].data.sla.deliveryTime} minutes </h4> */}
-      <h4>{deliveryTime} minutes </h4>
+      
+      <h4>{sla?.slaString}  </h4>
      
        </div> 
   );
