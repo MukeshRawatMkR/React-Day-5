@@ -1,5 +1,4 @@
 import RestaurantCard from "./RestaurantCard";
-// import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
@@ -26,7 +25,7 @@ const fetchData=async ()=>{
 setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 }
 
-  return listOfRestaurants.length===0?<Shimmer/>:(//this is ternary operator.
+  return listOfRestaurants.length===0?(<Shimmer/>):(//this is ternary operator.
     <div className="body">
       <div className="filter">
        <div className="search">

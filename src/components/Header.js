@@ -17,7 +17,11 @@ const Header = () => {
           <li>About Us</li>
           <li>Contact Us</li>  
           <li>Cart</li>
-        <button className="login" onClick={()=>{setBtnNameReact("Logout");}}
+        <button className="login" onClick={()=>
+        { btnNameReact==="Login"?
+          setBtnNameReact("Logout"):setBtnNameReact("Login");
+      
+        }}
         >
         {btnNameReact}
         </button>
