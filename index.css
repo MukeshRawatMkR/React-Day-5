@@ -1,4 +1,9 @@
-.header {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*.header {
   border: 2px solid red;
   display: flex;
   justify-content: space-between;
@@ -39,7 +44,6 @@
   padding: 10px;
 }
 .res-logo {
-  /* margin: 5px; */
   width: 100%;
 }
 .filter-btn {
@@ -68,3 +72,4 @@
   padding: 10px;
   border: 1px solid black;
 }
+*/
