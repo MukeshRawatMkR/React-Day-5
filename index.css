@@ -1,16 +1,16 @@
 .header {
-border: 2px solid red;
-    display: flex;
+  border: 2px solid red;
+  display: flex;
   justify-content: space-between;
 }
 .logo {
   width: 150px;
 }
-.nav-items{
-    padding:0px 20px;
+.nav-items {
+  padding: 0px 20px;
 }
 .nav-items > ul {
-    font-size: 24px;
+  font-size: 24px;
   display: flex;
   list-style-type: none;
 }
@@ -19,56 +19,52 @@ border: 2px solid red;
 
   margin: 10px;
 }
-.res-container{
-    
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-.res-card{
-    width: 200px;
-    margin: 2px;
-    height: 400px;
-    padding: 5px;
-
-}
-.res-card:hover{
-    
-    border: 2px solid black;
-    cursor:pointer;
-}
-
-.search{
-    padding:10px;
-}
-.res-logo{
-    /* margin: 5px; */
-    width: 100%;
-}
-.filter-btn{
-  margin: 10px;
-  cursor: pointer;
-}
-.shimmer-container{
+.res-container {
   display: flex;
   flex-wrap: wrap;
 }
-.shimmer-card{
+
+.res-card {
+  width: 200px;
+  margin: 2px;
+  height: 400px;
+  padding: 5px;
+}
+.res-card:hover {
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.search {
+  padding: 10px;
+}
+.res-logo {
+  /* margin: 5px; */
+  width: 100%;
+}
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
+}
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shimmer-card {
   height: 400px;
   width: 200px;
   background-color: gray;
   margin: 20px;
 }
-.login{
+.login {
   padding: 0 20px;
   cursor: pointer;
 }
-.filter{
+.filter {
   display: flex;
 }
 
-.user-card{
-  padding:10px;
-  border:1px solid black;
+.user-card {
+  padding: 10px;
+  border: 1px solid black;
 }
