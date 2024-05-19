@@ -2,35 +2,39 @@ import {Component} from "react";
 class UserClass extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0,
+    
+    this.state={
+        userInfo:{
+            name:"Lorem Ipsum",
+            location:"Default",
+            // avatar_url:"http://dummy-photo.com",
+        }
     };
   }
 
-componentDidMount(){
-    console.log("This is being executed at last!");
+async componentDidMount(){
+    const data=await fetch("https://api.github.com/users/mukeshrawatmkr");
+    const json=await data.json();
+    
+    this.setState({
+        userInfo:json,
+    });
 }
 
-  render() {
-    const { name, Location } = this.props;
+componentDidUpdate(){
+    console.log("component did update");
+}
+componentWillUnmount(){
+    console.log("I'll be gone as soon as you go to other page");
+}
 
-    const { count } = this.state;
-
+render() {
+      const{name, location, avatar_url}=this.state.userInfo;
     return (
       <div className="user-card">
-        <button
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-            });
-          }}
-        >
-          Increase the count
-        </button>
-        <h1>Count: {count}</h1>
-
+        <img src={avatar_url}/>
         <h2>{name} </h2>
-        <h3>{Location}</h3>
+        <h3>{location}</h3>
         <h4>Contact: @rwtposts</h4>
       </div>
     );
