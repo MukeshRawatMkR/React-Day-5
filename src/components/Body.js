@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //Local state variable -> super powerful variable
@@ -59,7 +60,11 @@ setSearchText(e.target.value);
         {
           //whenever we loop through map we should always use key to get rid of warning on console.
           filteredRestaurant.map((restaurant) => (
-            <RestaurantCard key={ restaurant.info.id} resData={restaurant} />
+            <Link 
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}> 
+            <RestaurantCard resData={restaurant} />
+            </Link>
            ))
         }
       </div>
