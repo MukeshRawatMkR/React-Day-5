@@ -76,7 +76,7 @@ if(onlineStatus===false )return( <h1>You are offline, User</h1>);
             setFilteredRestaurant(filteredRestaurant);
           }}
         >
-          Top Rated Restaurants
+          Top Rated Restaurants For you
         </button>
         </div>
         
