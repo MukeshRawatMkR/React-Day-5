@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //Local state variable -> super powerful variable
@@ -29,6 +30,10 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+const onlineStatus= useOnlineStatus();
+if(onlineStatus===false )return( <h1>You are offline, User</h1>);
+
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer /> //this is ternary operator.
