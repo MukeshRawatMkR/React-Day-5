@@ -1,17 +1,18 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+// import { withPromotedLabel } from "./RestaurantCard";
 const Body = () => {
   //Local state variable -> super powerful variable
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
-
+console.log(listOfRestaurants);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
+  const RestaurantCardPromoted=withPromotedLabel(RestaurantCard);//returns new component.
   useEffect(() => {
     // console.log("useEffect Called");
     fetchData();
@@ -89,7 +90,10 @@ if(onlineStatus===false )return( <h1>You are offline, User</h1>);
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant} />
+              {
+                restaurant.info.isOpen?(<RestaurantCardPromoted resData={restaurant}/>):(      <RestaurantCard resData={restaurant} />
+              )       
+              }
             </Link>
           ))
         }

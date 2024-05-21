@@ -4,7 +4,7 @@ import { CDN_URL } from "../utils/constants";//named exports imported like this.
 const RestaurantCard = (props) => {
   const { resData } = props;
  //destructuring of objects:
-const{cloudinaryImageId, name, cuisines, avgRating,sla}= resData?.info;
+ const{cloudinaryImageId, name, cuisines, avgRating,sla}= resData?.info;
 
 
 
@@ -28,6 +28,19 @@ const{cloudinaryImageId, name, cuisines, avgRating,sla}= resData?.info;
        </div> 
   );
 };
+
+
+export const withPromotedLabel=(RestaurantCard)=>{
+return(props)=>{//component which returns JSX.
+return(
+  <div>
+    <label className="absolute bg-gray-500 text-white rounded-md m-1  ">Promoted</label>
+    <RestaurantCard {...props}/>
+  </div>
+)
+}
+} 
+
 
 
   export default RestaurantCard;
